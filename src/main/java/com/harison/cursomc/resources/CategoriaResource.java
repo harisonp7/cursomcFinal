@@ -20,7 +20,9 @@ public class CategoriaResource {
 		private CategoriaService service;
 
 		 
-		@GetMapping("/{id}") //@RequestMapping(value="/{id}", method=RequestMethod.GET)
+		@GetMapping("/{id}") 
+			//@RequestMapping(value="/{id}", method=RequestMethod.GET)
+			//@PathVariable = Pegar o id e passar adiante no metodo buscar.
 		public ResponseEntity<?> find(@PathVariable Integer id) {
 			
 			Optional<Categoria> obj = service.Buscar(id);
