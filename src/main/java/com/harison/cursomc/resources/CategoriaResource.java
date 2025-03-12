@@ -23,10 +23,11 @@ public class CategoriaResource {
 		@GetMapping("/{id}") 
 			//@RequestMapping(value="/{id}", method=RequestMethod.GET)
 			//@PathVariable = Pegar o id e passar adiante no metodo buscar.
-		public ResponseEntity<?> find(@PathVariable Integer id) {
+		public ResponseEntity<?> find(@PathVariable Integer id) { //Nao inserir try catch aqui. Indicado fazer um 
 			
 			Optional<Categoria> obj = service.Buscar(id);
 			return ResponseEntity.ok().body(obj);
 			
 		}
 }
+

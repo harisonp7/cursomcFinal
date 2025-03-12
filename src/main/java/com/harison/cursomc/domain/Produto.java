@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Produto implements Serializable{
 		private Double preco;
 	
 		
+		@JsonBackReference // Do outro lado, já foram buscar os objetos. (nao ficar lopp infinito)
 		@ManyToAny 															//Em 1 dos dois lados. Na outra tabela, preciso dizer que ela é parte desse mapeamento. 
 		@JoinTable(name = "PRODUTO_CATEGORIA", 								//nome da tabela
 				joinColumns = @JoinColumn(name = "produto_id"), 			//id da tabele de produtos - chave estrangeira 

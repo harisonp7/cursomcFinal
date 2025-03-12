@@ -7,6 +7,8 @@ import java.util.Objects;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonManagedReference 								//Deseja associar os objetos, do outro lado JsonBackReference ((nao ficar lopp infinito)
 	@ManyToMany(mappedBy = "categorias")				// Continuação do mapeamento de produtos e categorias. 
 	private List<Produto> produtos = new ArrayList<>(); // Uma categoria tem vários produtos. Relacionamento de 1 para N. 
 	
