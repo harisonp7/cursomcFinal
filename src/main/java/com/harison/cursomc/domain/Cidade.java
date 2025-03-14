@@ -1,6 +1,8 @@
 package com.harison.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,6 @@ public class Cidade implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="estado_id") 		//Chave estrangeira da tabela cidade. 
 	private Estado estado; 				//Várias cidades para 1 estado, por isso aqui não é uma lista. ManyToOne (Muitos para 1)
-	
 
 	public Cidade() {
 		super();
