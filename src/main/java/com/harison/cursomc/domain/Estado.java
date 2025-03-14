@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Estado implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonBackReference								  //Nao pode trazer cidades
 	@OneToMany(mappedBy = "estado")					  //1 para muitos, o atributo mapeado na classe cidades foi estado. 
 	private List<Cidade> cidades = new ArrayList<>(); //1 Estado por ter uma lista de cidades, por isso uma lista. 
 

@@ -2,6 +2,8 @@ package com.harison.cursomc.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Endereco implements Serializable{
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
 	
+	@JsonBackReference					//Para nao cair em um loop, o endereco náo pode referenciar o cliente
 	@ManyToOne
 	@JoinColumn(name="cliente_id") 		//Chave estrangeira da tabela cliente. 
 	private Cliente cliente;			//Vários enderecos para 1 cliente, por isso aqui não é uma lista. ManyToOne (Muitos para 1)

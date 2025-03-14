@@ -54,7 +54,7 @@ public class Cliente implements Serializable{
 	}
 	public Cliente() {}
 
-	@JsonManagedReference 
+	@JsonManagedReference 									 //para nao entrar no loop, eu estou dizendo que o cliente pode referencia o endereco, na classe de endereco vou colocar o back (nao pode referenciar o cliente) Isso porque sao muitos para muitos
 	@OneToMany(mappedBy = "cliente")					 	 //1 para muitos, o atributo mapeado na classe endereco foi cliente. 
 	private List<Endereco> enderecos = new ArrayList<>(); 
 		
