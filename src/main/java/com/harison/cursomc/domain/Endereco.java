@@ -35,6 +35,8 @@ public class Endereco implements Serializable{
 	private Cliente cliente;			//Vários enderecos para 1 cliente, por isso aqui não é uma lista. ManyToOne (Muitos para 1)
 	
 	
+	//@JsonBackReference // Nao tem que conhecer o pedido é direcionada, Umm peido para 1 Endereco
+	//private Pedido pedido
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente, Cidade cidade) {
 		super();

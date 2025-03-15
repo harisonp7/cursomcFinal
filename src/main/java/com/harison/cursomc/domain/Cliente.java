@@ -31,18 +31,16 @@ public class Cliente implements Serializable{
 	private Integer tipo;								 	// private TipoCliente tipo -> Trocar para Integer o tipo cliente, para armazenar no banco o Inteiro, para o externo fica o tipo cliente
 	
 	
-	
-	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")						//Tabele no banco de dados
 	private Set<String> telefones = new HashSet<>(); 		//Set é um conjunto de strings, nao aceita repetiçao
 	
-	public Set<String> getTelefones() {
-		return telefones;
-	}
-	public void setTelefones(Set<String> telefones) {
-		this.telefones = telefones;
-	}
+	@JsonManagedReference 									 //para nao entrar no loop, eu estou dizendo que o cliente pode referencia o endereco, na classe de endereco vou colocar o back (nao pode referenciar o cliente) Isso porque sao muitos para muitos
+	@OneToMany(mappedBy = "cliente")					 	 //1 para muitos, o atributo mapeado na classe endereco foi cliente. 
+	private List<Endereco> enderecos = new ArrayList<>(); 
+		
+	private List<Pedido> pedidos = new ArrayList<>(); 		// 1 pedido tem muitos clientes
+	
 	//Nao colocar listas no construtor
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 		super();
@@ -53,11 +51,13 @@ public class Cliente implements Serializable{
 		this.tipo = tipo.getCod(); 							//pegou o código do tipo cliente
 	}
 	public Cliente() {}
-
-	@JsonManagedReference 									 //para nao entrar no loop, eu estou dizendo que o cliente pode referencia o endereco, na classe de endereco vou colocar o back (nao pode referenciar o cliente) Isso porque sao muitos para muitos
-	@OneToMany(mappedBy = "cliente")					 	 //1 para muitos, o atributo mapeado na classe endereco foi cliente. 
-	private List<Endereco> enderecos = new ArrayList<>(); 
-		
+	
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
+	}
 
 	public Integer getId() {
 		return id;
@@ -131,6 +131,12 @@ public class Cliente implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 }
